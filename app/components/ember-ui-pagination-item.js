@@ -1,0 +1,1 @@
+export { default } from 'ember-ui-pagination/components/ember-ui-pagination-item';

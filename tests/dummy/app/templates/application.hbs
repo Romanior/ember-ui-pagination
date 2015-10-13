@@ -1,8 +1,27 @@
+<div class="container">
+  <div class="row">
 
-<div class="">
+    <div class="col-md-6">
+      {{ember-ui-pagination
+        store=store
+        modelName='example'
+        url='/data.csv'
+        headers='id,method,url,hints,users,views'
+      }}
+    </div>
 
-{{ember-ui-pagination
-  content=model
-}}
-
+    <div class="col-md-6">
+      <!--Github API starts paging with page=1 instead of 0 :( -->
+      {{ember-ui-pagination
+        store=store
+        modelName='item'
+        url='https://api.github.com/search/repositories?q=test'
+        serverPagination=true
+        page=1
+      }}
+    </div>
+  </div>
 </div>
+
+
+

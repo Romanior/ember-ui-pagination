@@ -1,0 +1,7 @@
+{{#each visibleContent as |item|}}
+  {{ember-ui-pagination-item item=item}}
+{{/each}}
+
+{{#if canLoadMore}}
+  {{ember-ui-pagination-load-more handler=this}}
+{{/if}}

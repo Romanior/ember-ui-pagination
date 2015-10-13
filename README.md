@@ -1,6 +1,4 @@
-# Ember-ui-pagination
-
-This README outlines the details of collaborating on this Ember addon.
+# Ember-ui-pagination Add-on
 
 ## Installation
 
@@ -8,10 +6,11 @@ This README outlines the details of collaborating on this Ember addon.
 * `npm install`
 * `bower install`
 
-## Running
+## Running Dummy Application
 
 * `ember server`
 * Visit your app at http://localhost:4200.
+
 
 ## Running Tests
 
