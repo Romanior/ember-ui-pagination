@@ -8,7 +8,7 @@ give an overview of items.
 
 ## Usage
 
-`ember install:addon ember-ui-pagination`
+`npm install --save-dev ember-ui-pagination`
 
 ```
  {{ember-ui-pagination
