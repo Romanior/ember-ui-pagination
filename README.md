@@ -20,9 +20,9 @@ give an overview of items.
   }}
 ```
 where
-`modelName` - the name of the model where add-on loads data.
-`url` - URL to the server API, for server pagination it should support `page` and `per_page` params
-`page` - the page you want to start.
+* `modelName` - the name of the model where add-on loads data.
+* `url` - URL to the server API, for server pagination it should support `page` and `per_page` params
+* `page` - the page you want to start.
 
 
 ## Running Dummy Application
@@ -30,7 +30,7 @@ where
 * `git clone git@github.com:Romanior/ember-ui-pagination.git`
 * `npm install && bower install`
 * `ember server`
-* Visit your app at http://localhost:4200.
+* Visit your app at `http://localhost:4200`
 
 
 ## Running Tests
