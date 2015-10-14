@@ -31,7 +31,7 @@ export default Ember.Component.extend({
   classNames:       ['ember-ui-pagination__wrapper'],
   tagName:          'div',
   page:             0,
-  perPage:          30,
+  perPage:          25,
   modelName:        '',
   isLoaded:         false,
   isLoadingMore:    false,
@@ -96,8 +96,11 @@ export default Ember.Component.extend({
   },
 
   loadMore: function (isOpposite) {
-    var canLoadMore = this.get('canLoadMore');
-    if (canLoadMore && !isOpposite) {
+    var canLoadMore = this.get('canLoadMore'),
+        isLoadingMore = this.get('isLoadingMore');
+
+    if (!isLoadingMore && canLoadMore && !isOpposite) {
+      this.set('isLoadingMore', true);
       this.incrementProperty('page');
     }
   },
@@ -127,6 +130,7 @@ export default Ember.Component.extend({
     this.getData(page, perPage).then(function (data) {
       loadedData = component.loadDataToStore(data);
       visibleContent.addObjects(loadedData);
+      component.set('isLoadingMore', false);
     });
   }),
 

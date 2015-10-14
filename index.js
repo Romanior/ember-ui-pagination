@@ -10,7 +10,8 @@ module.exports = {
   included: function(app) {
     this._super.included(app);
     this.app.import(app.bowerDirectory + '/comma-separated-values/csv.js');
-    this.app.import(app.bowerDirectory + '/protonet/jquery.inview/jquery.inview.min.js');
+    this.app.import(app.bowerDirectory + '/jquery.inview.zuk/jquery.inview.min.js');
+
   }
 };
 
