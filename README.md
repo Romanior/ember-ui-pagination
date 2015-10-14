@@ -20,10 +20,27 @@ give an overview of items.
     page=1
   }}
 ```
+
+Or with static data
+
+```
+ {{ember-ui-pagination
+    store=store
+    modelName='example'
+    url='/data.csv'
+    headers='id,method,url,hints,users,views'
+  }}
+```
 where
 * `modelName` - the name of the model where add-on loads data.
 * `url` - URL to the server API, for server pagination it should support `page` and `per_page` params
 * `page` - the page you want to start.
+* `headers` - the CSV headers if you need to parse with with them.
+
+
+You can overwrite templates in your application to adapt you data
+* `app/templates/components/ember-ui-pagination.hbs`
+* `app/templates/components/ember-ui-pagination-item.hbs`
 
 
 ## Running Dummy Application
