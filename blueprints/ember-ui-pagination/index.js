@@ -1,5 +1,4 @@
 'use strict';
-var path = require('path');
 
 module.exports = {
   description: '',
@@ -10,7 +9,7 @@ module.exports = {
   },
 
   afterInstall: function() {
-    var path = this.addBowerPackageToProject('jquery.inview');
-    return path.addBowerPackageToProject('comma-separated-values');
+    this.addBowerPackageToProject('jquery.inview');
+    this.addBowerPackageToProject('comma-separated-values');
   }
 };

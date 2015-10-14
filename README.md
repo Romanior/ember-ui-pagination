@@ -8,8 +8,8 @@ give an overview of items.
 
 ## Usage
 
-`npm install --save-dev ember-ui-pagination`
-`ember g ember-ui-pagination`
+* `npm install --save-dev ember-ui-pagination`
+* `ember g ember-ui-pagination`
 
 ```
  {{ember-ui-pagination
