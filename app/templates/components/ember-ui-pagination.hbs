@@ -3,7 +3,7 @@
 {{/if}}
 
 <ul class="ember-ui-pagination">
-{{#each visibleContent as |item|}}
+{{#each item in visibleContent}}
   {{ember-ui-pagination-item item=item}}
 {{/each}}
 

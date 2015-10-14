@@ -1,3 +1,6 @@
+'use strict';
+var path = require('path');
+
 module.exports = {
   description: '',
   normalizeEntityName: function() {
