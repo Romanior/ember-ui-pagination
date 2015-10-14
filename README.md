@@ -6,7 +6,16 @@ Users very rarely paginate through many entries and pages, they tend to use filt
 to find records if they got more than 100 results. So let's create simple and very fast pagination on scrolling, to
 give an overview of items.
 
-## Usage
+
+## Running Test Application
+
+* `git clone git@github.com:Romanior/ember-ui-pagination.git`
+* `npm install && bower install`
+* `ember server`
+* Visit your app at `http://localhost:4200`
+
+
+## Usage as add-on in your application
 
 * `npm install --save-dev ember-ui-pagination`
 * `ember g ember-ui-pagination`
@@ -41,14 +50,6 @@ where
 You can overwrite templates in your application to adapt you data
 * `app/templates/components/ember-ui-pagination.hbs`
 * `app/templates/components/ember-ui-pagination-item.hbs`
-
-
-## Running Dummy Application
-
-* `git clone git@github.com:Romanior/ember-ui-pagination.git`
-* `npm install && bower install`
-* `ember server`
-* Visit your app at `http://localhost:4200`
 
 
 ## Running Tests
