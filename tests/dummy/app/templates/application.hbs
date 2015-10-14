@@ -1,26 +1,30 @@
 <div class="container">
-  <div class="row">
-
-    <div class="col-md-6">
-      {{ember-ui-pagination
-        store=store
-        modelName='example'
-        url='/data.csv'
-        headers='id,method,url,hints,users,views'
-      }}
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Ember UI Pagination Add-on</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          {{#link-to 'scrolling-exp' tagName="li"}}<a href="#">Static Data</a>{{/link-to}}
+          {{#link-to 'items' tagName="li"}}<a href="#">Server-side</a>{{/link-to}}
+          {{#link-to 'query-params-exp' tagName="li" disabled=true}}<a href="#">Query Params</a>{{/link-to}}
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
     </div>
+    <!--/.container-fluid -->
+  </nav>
 
-    <div class="col-md-6">
-      <!--Github API starts paging with page=1 instead of 0 :( -->
-      {{ember-ui-pagination
-        store=store
-        modelName='item'
-        url='https://api.github.com/search/repositories?q=test'
-        serverPagination=true
-        page=1
-      }}
-    </div>
-  </div>
+
+  {{outlet}}
 </div>
 
 

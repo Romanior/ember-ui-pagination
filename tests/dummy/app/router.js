@@ -6,8 +6,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('examples');
-  this.route('example', { path: '/examples/:example_id' });
+  this.route('scrolling-exp');
+  this.route('query-params-exp');
+
   this.route('items');
   this.route('item', { path: '/items/:item_id' });
 });

@@ -1,3 +1,8 @@
+{{#if isLoaded}}
+  <span class="ember-ui-pagination__meta">{{totalCount}} Items</span>
+{{/if}}
+
+<ul class="ember-ui-pagination">
 {{#each visibleContent as |item|}}
   {{ember-ui-pagination-item item=item}}
 {{/each}}
@@ -5,3 +10,4 @@
 {{#if canLoadMore}}
   {{ember-ui-pagination-load-more handler=this}}
 {{/if}}
+</ul>
