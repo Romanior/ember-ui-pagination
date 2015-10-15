@@ -40,7 +40,7 @@ export default Ember.Component.extend({
   visibleContent:   Ember.A(),
   totalCount:       null,
 
-  canLoadMore: Ember.computed('page', 'perPage', 'totalCount', function () {
+  canLoadMore: Ember.computed('page', 'perPage', 'totalCount', 'isLoaded', function () {
       var page       = this.get('page'),
           perPage    = this.get('perPage'),
           totalCount = this.get('totalCount'),

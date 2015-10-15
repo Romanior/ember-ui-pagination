@@ -3,11 +3,11 @@
 {{/if}}
 
 <ul class="ember-ui-pagination">
-{{#each item in visibleContent}}
-  {{ember-ui-pagination-item item=item}}
-{{/each}}
+  {{#each item in visibleContent}}
+    {{ember-ui-pagination-item item=item}}
+  {{/each}}
 
-{{#if canLoadMore}}
-  {{ember-ui-pagination-load-more handler=this}}
-{{/if}}
+  {{#if canLoadMore}}
+    {{ember-ui-pagination-load-more handler=this}}
+  {{/if}}
 </ul>

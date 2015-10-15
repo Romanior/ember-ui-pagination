@@ -12,9 +12,7 @@
     "jquery": "^1.11.3",
     "loader.js": "ember-cli/loader.js#3.2.1",
     "qunit": "~1.18.0",
-    "comma-separated-values": "~3.6.3",
-    "jquery.inview": "~1.0.0",
-    "jquery.inview.zuk": "*"
+    "comma-separated-values": "~3.6.3"
   },
   "devDependencies": {
     "jquery.inview": "jquery.inview.zuk#*"

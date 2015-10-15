@@ -7,16 +7,18 @@ export default Ember.Component.extend({
   classNames: ['ember-ui-pagination__load-more'],
   isLoadLess: false,
 
-  didInsertElement: function () {
+  attachEvents: Ember.on('didInsertElement', function () {
     var view = this;
     this.$().on('inview', function (event, isInView) {
       if (view.get('handler.isLoaded') && isInView) {
         Ember.tryInvoke(view.get('handler'), 'loadMore');
       }
     });
-  },
+  }),
 
-  willDestroyElement: function () {
+
+
+  removeEvents: Ember.on('willDestroyElement', function () {
     this.$().off('inview');
-  }
+  })
 });
