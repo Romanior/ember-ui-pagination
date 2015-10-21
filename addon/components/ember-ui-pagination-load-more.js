@@ -16,9 +16,5 @@ export default Ember.Component.extend(InViewportMixin, {
 
   didEnterViewport() {
     Ember.tryInvoke(this.get('parentView'), 'loadMore');
-  },
-
-  didExitViewport() {
-    console.log('exited');
   }
 });
