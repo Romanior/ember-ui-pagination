@@ -27,6 +27,16 @@ import Ember from 'ember';
  */
 
 
+const {
+  setProperties,
+  merge,
+  typeOf,
+  assert,
+  $,
+  get,
+  set,
+  } = Ember;
+
 export default Ember.Component.extend({
   classNames:       ['ember-ui-pagination__wrapper'],
   tagName:          'div',
@@ -47,7 +57,7 @@ export default Ember.Component.extend({
           isLoaded   = this.get('isLoaded');
 
       if (!isLoaded) {
-        return true;
+        return false;
       }
 
       return (page * perPage + perPage) < totalCount;
@@ -86,8 +96,8 @@ export default Ember.Component.extend({
         key       = Ember.String.pluralize(modelName),
         manyArray;
 
-    Ember.assert('modelName should be model you want to load the data', modelName);
-    Ember.assert('please set store to load data to', store);
+    assert('modelName should be model you want to load the data', modelName);
+    assert('please set store to load data to', store);
 
     if (data && store) {
       manyArray = store.pushMany(modelName.toLowerCase(), data[key] || data);
@@ -110,7 +120,7 @@ export default Ember.Component.extend({
         params        = {page: page, per_page: perPage},
         url           = this.get('url');
 
-    Ember.assert('please set url to load data from', url);
+    assert('please set url to load data from', url);
 
     if (Ember.isArray(staticContent)) {
       return Ember.RSVP.cast(staticContent.slice(page * perPage, page * perPage + perPage));

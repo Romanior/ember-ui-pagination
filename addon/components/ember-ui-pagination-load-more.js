@@ -1,24 +1,24 @@
 import Ember from 'ember';
+import InViewportMixin from 'ember-in-viewport';
 
 // TODO loading in opposite direction e.g. decrement page count
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(InViewportMixin, {
   tagName: 'li',
   classNames: ['ember-ui-pagination__load-more'],
   isLoadLess: false,
 
-  attachEvents: Ember.on('didInsertElement', function () {
-    var view = this;
-    this.$().on('inview', function (event, isInView) {
-      if (view.get('handler.isLoaded') && isInView) {
-        Ember.tryInvoke(view.get('handler'), 'loadMore');
-      }
-    });
-  }),
+  didEnterViewport() {
+    console.log('entered');
+  },
 
+  didExitViewport() {
+    console.log('exited');
+  }
 
+  //attachEvents: Ember.on('didInsertElement', function () {
+  //  var view = this;
+  //  Ember.tryInvoke(view.get('handler'), 'loadMore');
+  //}),
 
-  removeEvents: Ember.on('willDestroyElement', function () {
-    this.$().off('inview');
-  })
 });
