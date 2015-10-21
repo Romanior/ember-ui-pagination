@@ -8,10 +8,6 @@ module.exports = {
   },
 
   afterInstall: function() {
-    var that = this;
-
-    return this.addBowerPackageToProject('comma-separated-values').then(function() {
-      return that.addBowerPackageToProject('jquery.inview.zuk');
-    });
+    return this.addBowerPackageToProject('comma-separated-values')
   }
 };

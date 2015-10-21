@@ -7,6 +7,7 @@ import Ember from 'ember';
  *
  * TODO: calculate the number of items based on the viewport height, recalculate on resize
  *       I'm using now just a large sensible number, in case if it is too few, it'd load more immediately.
+ *       UPD, it seems for me now it should not matter much
  *
  * TODO load data and work in backward direction, e.g. user scrolled, click on item, went back, or went with QP
  * TODO think about how to deal with different JSON server outputs
@@ -27,6 +28,16 @@ import Ember from 'ember';
  */
 
 
+const {
+  setProperties,
+  merge,
+  typeOf,
+  assert,
+  $,
+  get,
+  set,
+  } = Ember;
+
 export default Ember.Component.extend({
   classNames:       ['ember-ui-pagination__wrapper'],
   tagName:          'div',
@@ -40,19 +51,26 @@ export default Ember.Component.extend({
   visibleContent:   Ember.A(),
   totalCount:       null,
 
-  canLoadMore: Ember.computed('page', 'perPage', 'totalCount', function () {
+  canLoadMore: Ember.computed('page', 'perPage', 'totalCount', 'isLoaded', function () {
       var page       = this.get('page'),
           perPage    = this.get('perPage'),
           totalCount = this.get('totalCount'),
           isLoaded   = this.get('isLoaded');
 
       if (!isLoaded) {
-        return true;
+        return false;
       }
 
       return (page * perPage + perPage) < totalCount;
     }
-  ),
+  ).readOnly(),
+
+  /**
+   * Setup data when component has inserted to DOM
+   * Load the first portion, parse static data, if needed
+   * and set information about total number
+   *
+   */
 
   setupData: Ember.on('didInsertElement', function () {
     var component        = this,
@@ -67,16 +85,32 @@ export default Ember.Component.extend({
 
     this.getData(page, perPage).then(function (result) {
       var parsed = result;
-      if (!serverPagination) { // cache all results
+
+      if (!serverPagination && csvHeaders) { // cache all results
         component.staticContent = component._parseStaticContent(parsed, csvHeaders);
         parsed                  = component.staticContent.slice(page * perPage, perPage);
       }
 
-      component.setProperties({
-        'totalCount':     result.total_count || result.length,
+      setProperties(component, {
+        'totalCount':     result['total_count'] || result.length,
         'visibleContent': component.loadDataToStore(parsed),
         'isLoaded':       true
       });
+    });
+  }),
+
+  // TODO think about to use just visibleContent as computed array (page, perPage, totalCount...)
+  processContent: Ember.observer('page', 'perPage', function () {
+    var page         = this.get('page'),
+      perPage        = this.get('perPage'),
+      component      = this,
+      visibleContent = this.get('visibleContent'),
+      loadedData;
+
+    this.getData(page, perPage).then(function (data) {
+      loadedData = component.loadDataToStore(data);
+      visibleContent.addObjects(loadedData);
+      component.set('isLoadingMore', false);
     });
   }),
 
@@ -86,8 +120,8 @@ export default Ember.Component.extend({
         key       = Ember.String.pluralize(modelName),
         manyArray;
 
-    Ember.assert('modelName should be model you want to load the data', modelName);
-    Ember.assert('please set store to load data to', store);
+    assert('modelName should be model you want to load the data', modelName);
+    assert('please set store to load data to', store);
 
     if (data && store) {
       manyArray = store.pushMany(modelName.toLowerCase(), data[key] || data);
@@ -95,11 +129,11 @@ export default Ember.Component.extend({
     }
   },
 
-  loadMore: function (isOpposite) {
+  loadMore: function () {
     var canLoadMore = this.get('canLoadMore'),
         isLoadingMore = this.get('isLoadingMore');
 
-    if (!isLoadingMore && canLoadMore && !isOpposite) {
+    if (!isLoadingMore && canLoadMore) {
       this.set('isLoadingMore', true);
       this.incrementProperty('page');
     }
@@ -110,7 +144,7 @@ export default Ember.Component.extend({
         params        = {page: page, per_page: perPage},
         url           = this.get('url');
 
-    Ember.assert('please set url to load data from', url);
+    assert('please set url to load data from', url);
 
     if (Ember.isArray(staticContent)) {
       return Ember.RSVP.cast(staticContent.slice(page * perPage, page * perPage + perPage));
@@ -119,20 +153,6 @@ export default Ember.Component.extend({
       return this._ajax(url, params);
     }
   },
-
-  processContent: Ember.observer('page', 'perPage', function () {
-    var page           = this.get('page'),
-        perPage        = this.get('perPage'),
-        component      = this,
-        visibleContent = this.get('visibleContent'),
-        loadedData;
-
-    this.getData(page, perPage).then(function (data) {
-      loadedData = component.loadDataToStore(data);
-      visibleContent.addObjects(loadedData);
-      component.set('isLoadingMore', false);
-    });
-  }),
 
   _parseStaticContent: function (data, headers) {
     var parsed;
