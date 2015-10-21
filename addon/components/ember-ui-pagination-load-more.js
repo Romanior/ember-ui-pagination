@@ -8,17 +8,17 @@ export default Ember.Component.extend(InViewportMixin, {
   classNames: ['ember-ui-pagination__load-more'],
   isLoadLess: false,
 
+  viewportOptionsOverride: Ember.on('didInsertElement', function() {
+    Ember.setProperties(this, {
+      viewportSpy :true
+    });
+  }),
+
   didEnterViewport() {
-    console.log('entered');
+    Ember.tryInvoke(this.get('parentView'), 'loadMore');
   },
 
   didExitViewport() {
     console.log('exited');
   }
-
-  //attachEvents: Ember.on('didInsertElement', function () {
-  //  var view = this;
-  //  Ember.tryInvoke(view.get('handler'), 'loadMore');
-  //}),
-
 });
