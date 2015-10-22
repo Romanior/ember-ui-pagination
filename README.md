@@ -1,6 +1,6 @@
 # Ember UI Pagination Add-on [![Ember Observer Score](http://emberobserver.com/badges/ember-ui-pagination.svg)](http://emberobserver.com/addons/ember-ui-pagination)
 
-## [Demo](http://peaceful-beyond-1130.herokuapp.com/scrolling-exp])
+## [Demo](http://peaceful-beyond-1130.herokuapp.com/scrolling-exp)
 
 ## Motivation
 
@@ -22,7 +22,7 @@ give an overview of items.
 * `npm install --save-dev ember-ui-pagination`
 * `ember g ember-ui-pagination`
 
-```
+```handlebars
  {{ember-ui-pagination
     store=store
     modelName='item'
@@ -34,7 +34,7 @@ give an overview of items.
 
 Or with static data
 
-```
+```handlebars
  {{ember-ui-pagination
     store=store
     modelName='example'
