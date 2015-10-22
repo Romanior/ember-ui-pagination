@@ -8,6 +8,7 @@ module.exports = {
   },
 
   afterInstall: function() {
+    // TODO should be added on demand
     return this.addBowerPackageToProject('comma-separated-values')
   }
 };
