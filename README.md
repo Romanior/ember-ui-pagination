@@ -1,4 +1,6 @@
-# Ember UI Pagination Add-on
+# Ember UI Pagination Add-on [![Ember Observer Score](http://emberobserver.com/badges/ember-ui-pagination.svg)](http://emberobserver.com/addons/ember-ui-pagination)
+
+## [Demo](http://peaceful-beyond-1130.herokuapp.com/scrolling-exp])
 
 ## Motivation
 
