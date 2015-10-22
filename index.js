@@ -9,6 +9,7 @@ module.exports = {
   },
   included: function(app) {
     this._super.included(app);
+    // TODO it should be included on demand only
     this.app.import(app.bowerDirectory + '/comma-separated-values/csv.js');
   }
 };
