@@ -1,4 +1,5 @@
-# Ember UI Pagination Add-on [![Ember Observer Score](http://emberobserver.com/badges/ember-ui-pagination.svg)](http://emberobserver.com/addons/ember-ui-pagination) [![Build Status](https://travis-ci.org/Romanior/ember-ui-pagination.svg)](https://travis-ci.org/Romanior/ember-ui-pagination)
+# Ember UI Pagination Add-on 
+[![Ember Observer Score](http://emberobserver.com/badges/ember-ui-pagination.svg)](http://emberobserver.com/addons/ember-ui-pagination) [![Build Status](https://travis-ci.org/Romanior/ember-ui-pagination.svg)](https://travis-ci.org/Romanior/ember-ui-pagination)
 
 ## [Demo](http://peaceful-beyond-1130.herokuapp.com/scrolling-exp)
 
