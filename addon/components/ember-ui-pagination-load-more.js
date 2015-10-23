@@ -6,15 +6,15 @@ import InViewportMixin from 'ember-in-viewport';
 export default Ember.Component.extend(InViewportMixin, {
   tagName: 'li',
   classNames: ['ember-ui-pagination__load-more'],
-  isLoadLess: false,
+  isLoadLess: false
 
-  viewportOptionsOverride: Ember.on('didInsertElement', function() {
-    Ember.setProperties(this, {
-      viewportSpy :true
-    });
-  }),
+//  viewportOptionsOverride: Ember.on('didInsertElement', function() {
+//    Ember.setProperties(this, {
+//      viewportSpy :true
+//    });
+//  }),
 
-  didEnterViewport() {
-    Ember.tryInvoke(this.get('parentView'), 'loadMore');
-  }
+//  didEnterViewport() {
+//    Ember.tryInvoke(this.get('parentView'), 'loadMore');
+//  }
 });
