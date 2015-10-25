@@ -30,12 +30,7 @@ import Ember from 'ember';
 
 const {
   setProperties,
-  merge,
-  typeOf,
   assert,
-  $,
-  get,
-  set,
   } = Ember;
 
 export default Ember.Component.extend({
