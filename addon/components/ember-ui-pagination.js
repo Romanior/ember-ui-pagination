@@ -45,6 +45,8 @@ export default Ember.Component.extend({
   staticContent:    null,
   visibleContent:   Ember.A(),
   totalCount:       null,
+  csvHeaders:       null,
+  url:              '',
 
   canLoadMore: Ember.computed('page', 'perPage', 'totalCount', 'isLoaded', function () {
       var page       = this.get('page'),
@@ -69,7 +71,7 @@ export default Ember.Component.extend({
 
   setupData: Ember.on('didInsertElement', function () {
     var component        = this,
-        csvHeaders       = this.get('headers'),
+        csvHeaders       = this.get('csvHeaders'),
         page             = this.get('page'),
         perPage          = this.get('perPage'),
         serverPagination = this.get('serverPagination');
@@ -79,16 +81,15 @@ export default Ember.Component.extend({
     }
 
     this.getData(page, perPage).then(function (result) {
-      var parsed = result;
-
-      if (!serverPagination && csvHeaders) { // cache all results
-        component.staticContent = component._parseStaticContent(parsed, csvHeaders);
-        parsed                  = component.staticContent.slice(page * perPage, perPage);
+      if (!serverPagination) {
+        // cache all static data, try to parse in case of CSV
+        component.staticContent = component._parseStaticContent(result, csvHeaders);
+        result                  = component.staticContent.slice(page * perPage, perPage);
       }
 
       setProperties(component, {
-        'totalCount':     result['total_count'] || result.length,
-        'visibleContent': component.loadDataToStore(parsed),
+        'totalCount':     result['total_count'] || component.staticContent.length,
+        'visibleContent': component.loadDataToStore(result),
         'isLoaded':       true
       });
     });
@@ -149,19 +150,41 @@ export default Ember.Component.extend({
     }
   },
 
-  _parseStaticContent: function (data, headers) {
+  /**
+   * Parsing CSV to JSON or simply return JSON
+   * @param data
+   * @param csvHeaders
+   * @returns {Object} with JSON data
+   * @private
+   */
+  _parseStaticContent: function (data, csvHeaders) {
     var parsed;
-    try {
-      parsed = new CSV(data, {
-        header: headers
-      }).parse();
+
+    // figure out if the data JSON or CSV,
+    // try to parse CSV
+    if (!isJSON(data)) {
+      try {
+        parsed = new CSV(data, {
+          header: csvHeaders
+        }).parse();
+      }
+      catch (e) {
+        throw e;
+      }
+    } else {
+      parsed = data;
     }
-    catch (e) {
-      throw e;
-    }
+
     return parsed;
   },
 
+  /**
+   * Ajax wrapper for get request and returning promise
+   * @param url
+   * @param params
+   * @returns {Promise}
+   * @private
+   */
   _ajax: function (url, params) {
     var pr = Ember.$.get(url, params);
     return pr.then(function (data) {
@@ -169,3 +192,7 @@ export default Ember.Component.extend({
     });
   }
 });
+
+function isJSON(obj) {
+  return obj[0] && Object.prototype.toString.call(obj[0]) === '[object Object]';
+}
