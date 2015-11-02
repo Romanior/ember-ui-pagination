@@ -38,6 +38,8 @@
   },
   "keywords": [
     "ember-addon",
+    "CSV pagination",
+    "JSON pagination",
     "pagination",
     "UI",
     "scrolled pagination"
