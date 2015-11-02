@@ -49,6 +49,7 @@ one the first row.
     modelName='example'
     url='/data.json'
   }}
+```
 
 where
 * `modelName` - the name of the model where add-on loads data.
