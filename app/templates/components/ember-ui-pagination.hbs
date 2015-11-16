@@ -5,7 +5,7 @@
 {{/if}}
 
 <ul class="ember-ui-pagination">
-  {{#each item in visibleContent}}
+  {{#each visibleContent as |item index| }}
     {{ember-ui-pagination-item item=item}}
   {{else}}
     {{#if isLoaded}}<p>No Items to show</p>{{/if}}
