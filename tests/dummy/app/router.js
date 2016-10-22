@@ -7,6 +7,7 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('scrolling-exp');
+  this.route('scrolling-exp-json');
   this.route('query-params-exp');
 
   this.route('items');

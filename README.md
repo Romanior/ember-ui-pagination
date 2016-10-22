@@ -1,19 +1,19 @@
-# Ember UI Pagination Add-on [![Ember Observer Score](http://emberobserver.com/badges/ember-ui-pagination.svg)](http://emberobserver.com/addons/ember-ui-pagination) [![Build Status](https://travis-ci.org/Romanior/ember-ui-pagination.svg)](https://travis-ci.org/Romanior/ember-ui-pagination)
+# Ember UI Pagination Add-on 
+[![Ember Observer Score](http://emberobserver.com/badges/ember-ui-pagination.svg)](http://emberobserver.com/addons/ember-ui-pagination) [![Build Status](https://travis-ci.org/Romanior/ember-ui-pagination.svg)](https://travis-ci.org/Romanior/ember-ui-pagination)
+
+# N.B. works only with ember-data < 2.0.0
 
 ## [Demo](http://peaceful-beyond-1130.herokuapp.com/scrolling-exp)
 
-## Motivation
-
-Users very rarely paginate through many entries and pages, they tend to use filtering, sorting and ordering
-to find records if they got more than 100 results. So let's create simple and very fast pagination on scrolling, to
-give an overview of items.
+## Scrolling paginator, supports large static files,
+filtering, sorting is coming!
 
 
 ## Running Test Application
 
 * `git clone git@github.com:Romanior/ember-ui-pagination.git`
 * `npm install && bower install`
-* `ember server`
+* `ember s`
 * Visit your app at `http://localhost:4200`
 
 
@@ -32,24 +32,35 @@ give an overview of items.
   }}
 ```
 
-Or with static data
+Or with static data, CSV or JSON are supported. CSV file will be parsed to JSON, you
+may support with additional `csvHeaders` parameters if the .csv file does not have them
+one the first row.
 
 ```handlebars
  {{ember-ui-pagination
     store=store
     modelName='example'
     url='/data.csv'
-    headers='id,method,url,hints,users,views'
+    csvHeaders='id,method,url,hints,users,views'
   }}
 ```
+
+```handlebars
+ {{ember-ui-pagination
+    store=store
+    modelName='example'
+    url='/data.json'
+  }}
+```
+
 where
 * `modelName` - the name of the model where add-on loads data.
 * `url` - URL to the server API, for server pagination it should support `page` and `per_page` params
 * `page` - the page you want to start.
-* `headers` - the CSV headers if you need to parse with with them.
+* `csvHeaders` - the CSV headers if you need to parse with with them.
 
 
-You can overwrite templates in your application to adapt you data
+You can overwrite templates in your application to adapt your data
 * `app/templates/components/ember-ui-pagination.hbs`
 * `app/templates/components/ember-ui-pagination-item.hbs`
 
