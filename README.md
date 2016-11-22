@@ -1,13 +1,5 @@
-# Ember UI Pagination Add-on 
-[![Ember Observer Score](http://emberobserver.com/badges/ember-ui-pagination.svg)](http://emberobserver.com/addons/ember-ui-pagination) [![Build Status](https://travis-ci.org/Romanior/ember-ui-pagination.svg)](https://travis-ci.org/Romanior/ember-ui-pagination)
-
-# N.B. works only with ember-data < 2.0.0
-
+# Ember UI Pagination Showcase
 ## [Demo](http://peaceful-beyond-1130.herokuapp.com/scrolling-exp)
-
-## Scrolling paginator, supports large static files,
-filtering, sorting is coming!
-
 
 ## Running Test Application
 
