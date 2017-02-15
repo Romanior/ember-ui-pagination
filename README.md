@@ -1,6 +1,8 @@
 # Ember UI Pagination Showcase
 ## [Demo](http://peaceful-beyond-1130.herokuapp.com/scrolling-exp)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Romanior/ember-ui-pagination.svg)](https://greenkeeper.io/)
+
 ## Running Test Application
 
 * `git clone git@github.com:Romanior/ember-ui-pagination.git`
